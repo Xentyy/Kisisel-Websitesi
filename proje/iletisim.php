@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iletisim</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://kit.fontawesome.com/c20485228a.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <section id="menu">
+        <div id="logo">İletişim</div>
+        <nav>
+            <a href="index.php"><i class="fas fa-home ikon"></i>Anasayfa</a>
+            <a href="hakkinda.php"><i class="fas fa-info ikon"></i>Hakkinda</a>
+            <a href="ozgecmis.php"><i class="fas fa-graduation-cap ikon"></i>Özgeçmiş</a>
+            <a href="sehrim.php"><i class="fa-thin fa-mosque ikon"></i></i>Sehrim</a>
+            <a href="hobilerim.php"><i class="fa-thin fa-basketball ikon"></i></i>Hobilerim</a>
+            <a href="iletisim.php"><i class="fas fa-map-pin ikon"></i>İletişim</a>
+            <a href="panelgiris.php"><i class="fa-thin fa-right-to-bracket"></i>Giriş Yap</a>
+        </nav>
+
+    </section>
+     
+    
+
+    <section id="iletisim">
+        <div class="container">
+            <h3 id="h3iletisim">İletişim</h3>
+
+                <form action="iletisim.php" method="post">
+            
+            <div id="iletisimopak">
+                <div id="formgroup">
+                    <div id="solform">
+                        <input type="text"
+                        name="isim"
+                        placeholder="Ad Soyad" required class="form-control">
+                        <input type="text"
+                        name="tel"
+                        placeholder ="Telefon Numarası" required class="form-control">
+                    </div>
+                    <div id="sagform">
+                        <input type="email"
+                        name="mail"
+                        placeholder="E-Mail Adresi" required class="form-control">
+                        <input type="text"
+                        name="konu"
+                        placeholder ="Konu Başlığı" required class="form-control">
+                    </div>
+                        <textarea name="mesaj" id="" cols="30" placeholder="Mesaj giriniz" rows="10" required class="form-control"></textarea>
+                    <input type="submit" value="Gönder">
+
+                </div>
+                
+                <div id="adres">
+                    <h4 id="adresBaslik">Adres : </h4>
+                    <p class="adresp">Cumhuriyet Mahallesi</p>
+                    <p class="adresp">326. Sokak No : 15</p>
+                    <p class="adresp">553-287-1054</p>
+                    <p class="adresp">Email :
+                        melih.sengun@ogr.sakarya.edu.tr
+                    </p>
+
+                </div>
+            </div>
+                </form>
+            <footer>
+                <div id ="copyright">2023 | Tüm Hakları Saklıdır</div>
+            
+                <a href="#menu"><i class="fas fa-angle-up" id="up"></i></a>
+
+            </footer>
+
+        </div>
+    </section>
+
+
+
+</body>
+</html> 
+
+
+
+
+<?php
+
+    include("baglanti.php");
+
+    if(isset($_POST["isim"], $_POST["tel"], $_POST["mail"], $_POST["konu"], $_POST["mesaj"]))
+    {
+        $adsoyad=$_POST["isim"];
+        $telefon=$_POST["tel"];
+        $email=$_POST["mail"];
+        $konu=$_POST["konu"];
+        $mesaj=$_POST["mesaj"];
+
+        $ekle="INSERT INTO iletisim(adsoyad, telefon, email, konu, mesaj) VALUES ('".$adsoyad."','".$telefon."','".$email."','".$konu."','".$mesaj."')";
+
+        if($baglan->query($ekle)===TRUE)
+        {
+            echo "<script>alert('Mesajınız başarılı ile gönderilmiştir.')</script>";
+        }
+
+        else
+        {
+            echo "<script>alert('Mesajınız gönderilirken bir hata oluştu.')</script>";
+        }
+    }
+
+?>
